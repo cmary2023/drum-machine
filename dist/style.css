@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i");
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+@font-face {
+  font-family: "DS-DIGITAL";
+  src: url("https://res.cloudinary.com/dzsmdyknz/raw/upload/v1532588680/fcc-drum-machine/ds-digital-font/DS-DIGIT.TTF");
+  src: url("https://res.cloudinary.com/dzsmdyknz/raw/upload/v1532588680/fcc-drum-machine/ds-digital-font/DS-DIGIB.TTF");
+  src: url("https://res.cloudinary.com/dzsmdyknz/raw/upload/v1532588679/fcc-drum-machine/ds-digital-font/DS-DIGII.TTF");
+  src: url("https://res.cloudinary.com/dzsmdyknz/raw/upload/v1532588679/fcc-drum-machine/ds-digital-font/DS-DIGI.TTF");
+}
+/*$pad-color: radial-gradient(#3a3a3a, black);*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://png.pngtree.com/background/20221225/original/pngtree-blue-musical-notes-background-picture-image_1986629.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.App .dashboard-container {
+  background: #4b4b31;
+  color: #ff3300;
+  text-shadow: 0 0 20px #00ccff, 0 0 20px #0086b3;
+  width: 700px;
+  padding: 2rem;
+  display: flex;
+  margin: auto;
+  border-radius: 50px;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.2), 0 5px 40px rgba(255, 255, 255, 0.2) inset;
+}
+.App .dashboard-container .drum-container {
+  min-height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+  border: 4px outset #cccccc;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+.App .dashboard-container .drum-container h1 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  background: #4b4b31;
+}
+.App .dashboard-container .drum-container .drumbtn-container {
+  background-color: #4b4b31;
+  justify-self: flex-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+.App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn {
+  user-select: none;
+  text-shadow: none;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  width: 80px;
+  height: 90px;
+  margin: 0.5rem;
+  margin-right: 0.1rem;
+  background: url("https://pngimg.com/d/buttons_PNG117.png") center/cover no-repeat;
+  background-size: 120%;
+  transition: all 0.1s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: loadAnimation 0.8s ease-in-out;
+}
+.App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:focus {
+  outline: none;
+}
+.App .dashboard-container .control-container {
+  min-height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3rem;
+  -webkit-box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4);
+  border: 4px outset #cccccc;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  padding: 1rem;
+}
+.App .dashboard-container .control-container .power-wrapper {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+.App .dashboard-container .control-container .screen-wrapper {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  border: 2px solid blue;
+  border-radius: 10px;
+  font-family: "DS-DIGITAL", sans-serif;
+  box-shadow: 0 0 20px #00ccff, 0 0 20px #0086b3;
+  background-color: black;
+  text-shadow: 0px 0px 8px red;
+  margin-top: auto-flow;
+  margin-bottom: auto;
+}
+.App .dashboard-container .control-container .screen-wrapper .screen,
+.App .dashboard-container .control-container .screen-wrapper .volume {
+  margin-top: auto;
+}
+.App .dashboard-container .control-container .screen-wrapper .volume {
+  text-align: left;
+  font-size: 1rem;
+  margin-left: 1rem;
+}
+.App .dashboard-container .control-container .volume-wrapper,
+.App .dashboard-container .control-container .bank-wrapper {
+  margin-top: auto;
+}
+.App .dashboard-container .control-container .volume-slider {
+  width: 100%;
+  border-radius: 10px;
+  appearance: none;
+  height: 9px;
+  background: #ccf5ff;
+  outline: none;
+  box-shadow: 0 0 20px #00ccff, 0 0 20px #0086b3;
+}
+.App .dashboard-container .control-container .volume-slider::-webkit-slider-thumb {
+  width: 100%;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  cursor: pointer;
+  background: #3e3e39;
+}
+.App .dashboard-container .control-container .bank-wrapper {
+  justify-self: flex-end;
+  display: flex;
+}
+.App .dashboard-container .control-container .bank-wrapper .bank {
+  flex: 1;
+  border-radius: 10px;
+  background: black;
+  padding: 0.5rem 1rem;
+  box-shadow: 2px 2px 40px #ffff99, -2px -2px 40px #ffff99, -2px 2px 40px #ffff00, 2px -2px 40px #ffff99, 0 0 20px #ffff66;
+  color: 2px 2px 40px #ffff99, -2px -2px 40px #ffff99, -2px 2px 40px #ffff00, 2px -2px 40px #ffff99, 0 0 20px #ffff66;
+  text-shadow: green;
+  font-weight: 400;
+  font-family: "Caprasimo", serif;
+}
+.App .dashboard-container .control-container .bank-wrapper .bank:focus {
+  outline: none;
+}
+.App .dashboard-container .control-container .bank-wrapper .bank:nth-of-type(2) {
+  margin-left: 5px;
+}
+.App .dashboard-container .control-container .bank-wrapper .bank.activeBank {
+  background: grey;
+}
+.App #power {
+  display: none;
+}
+.App .fa-power-off {
+  padding: 0;
+  text-shadow: 2px 2px 40px #ffff99, -2px -2px 40px #ffff99, -2px 2px 40px #ffff00, 2px -2px 40px #ffff99, 0 0 20px #ffff66;
+}
+.App #power:checked + .powerLabel .fa-power-off {
+  color: rgba(255, 51, 0, 0.5);
+  text-shadow: none;
+}
+@media screen and (max-width: 600px) {
+  .App .App .dashboard-container {
+    min-height: 400px;
+    margin: 1rem;
+  }
+  .App .App .dashboard-container h1 {
+    font-size: 1.5rem;
+  }
+  .App .App .dashboard-container .drum-container .drumbtn-container {
+    padding-top: 2rem;
+  }
+  .App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn {
+    width: 60px;
+    height: 60px;
+  }
+  .App .App .dashboard-container .control-container .screen {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .App .App .dashboard-container {
+    margin: 1rem;
+    flex-direction: column;
+    position: relative;
+  }
+  .App .App .dashboard-container h1 {
+    font-size: 1.5rem;
+  }
+  .App .App .dashboard-container .drum-container {
+    width: 100%;
+  }
+  .App .App .dashboard-container .drum-container .drumbtn-container {
+    padding-top: 2rem;
+  }
+  .App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn {
+    width: 80px;
+    height: 80px;
+  }
+  .App .App .dashboard-container .control-container {
+    width: 100%;
+    margin: 2rem 0 0 0;
+  }
+  .App .App .dashboard-container .control-container .power-wrapper {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  .App .App .dashboard-container .control-container .screen-wrapper,
+.App .App .dashboard-container .control-container .volume-wrapper {
+    margin-bottom: 1rem;
+  }
+}
+@keyframes loadAnimation {
+  0% {
+    color: #ffff66;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    color: #ffff66;
+    transform: scale(0.9);
+    box-shadow: 1px 1px 10px 3px #ffff66, -1px -1px 10px 3px #ffff66;
+  }
+  100% {
+    color: #ffff66;
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(4) {
+  animation-delay: 0.4s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(5) {
+  animation-delay: 0.5s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(6) {
+  animation-delay: 0.6s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(7) {
+  animation-delay: 0.7s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(8) {
+  animation-delay: 0.8s;
+}
+.App .App .dashboard-container .drum-container .drumbtn-container .drum-pad.btn:nth-of-type(9) {
+  animation-delay: 0.9s;
+}
